@@ -1,12 +1,14 @@
 import { buildRevisionSentence, catalogStats, dueWordIds, updateProgress, weakWordsStudiedOn } from "./learning-core.js";
 import { universityMottos } from "./motto-catalog.js";
 import { VoiceAIClient } from "./voice-ai.js";
+import { createCloudSync } from "./cloud-sync.js";
 
 const STORAGE_KEY = "aster-english-state-v1";
 const SESSION_KEY = "wordsail-session-v1";
 const WELCOME_KEY = "wordsail-welcome-v1";
 const app = document.getElementById("app");
 let voiceClient = null;
+let cloudSync = null;
 
 function apiEndpoint(pathname) {
   const base = String(globalThis.WORDSAIL_CONFIG?.apiBase || "").replace(/\/$/, "");
@@ -23,6 +25,8 @@ const state = {
   revealed: false,
   progress: {},
   activityDates: [],
+  localUpdatedAt: "",
+  cloud: { mode: "disabled", detail: "", enabled: false, userId: "" },
   toastTimer: null,
   mottoTimer: null,
   mottoIndex: Math.floor(Date.now() / 86400000) % universityMottos.length,
@@ -56,15 +60,34 @@ function loadLocalState() {
     state.progress = saved.progress && typeof saved.progress === "object" ? saved.progress : {};
     state.activityDates = Array.isArray(saved.activityDates) ? saved.activityDates : [];
     state.activeChapterId = String(saved.activeChapterId || "");
+    state.localUpdatedAt = String(saved.updatedAt || "");
   } catch { /* Ignore damaged local state. */ }
 }
 
-function saveLocalState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+function learningSnapshot() {
+  return {
     progress: state.progress,
     activityDates: state.activityDates,
-    activeChapterId: state.activeChapterId
-  }));
+    activeChapterId: state.activeChapterId,
+    updatedAt: state.localUpdatedAt || new Date().toISOString(),
+    schemaVersion: 1
+  };
+}
+
+function saveLocalState(syncCloud = true) {
+  state.localUpdatedAt = new Date().toISOString();
+  const snapshot = learningSnapshot();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
+  if (syncCloud) cloudSync?.saveLearningState(snapshot);
+}
+
+function applyCloudSnapshot(snapshot) {
+  state.progress = snapshot.progress || {};
+  state.activityDates = Array.isArray(snapshot.activityDates) ? snapshot.activityDates : [];
+  state.activeChapterId = String(snapshot.activeChapterId || state.activeChapterId || "");
+  state.localUpdatedAt = String(snapshot.updatedAt || new Date().toISOString());
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(learningSnapshot()));
+  if (state.catalog) render();
 }
 
 function esc(value) {
@@ -83,10 +106,15 @@ function sessionId() {
 }
 
 function trackEvent(event, properties = {}) {
+  const payload = { event, properties, sessionId: sessionId(), page: state.page, createdAt: new Date().toISOString() };
+  if (cloudSync?.enabled) {
+    cloudSync.recordEvent(payload);
+    return;
+  }
   fetch(apiEndpoint("/api/events"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ event, properties, sessionId: sessionId(), page: state.page }),
+    body: JSON.stringify(payload),
     keepalive: true
   }).catch(() => {});
 }
@@ -123,6 +151,17 @@ function sourceClass() {
   return state.catalog?.publicationReady ? "original" : "";
 }
 
+function cloudStatus() {
+  const labels = {
+    disabled: "◌ 本机保存",
+    connecting: "⟳ 正在连接云端",
+    synced: "☁ 云端已保存",
+    queued: "☁ 等待同步",
+    error: "⚠ 本机已保存"
+  };
+  return labels[state.cloud.mode] || labels.disabled;
+}
+
 function navButton(id, icon, label) {
   return `<button class="${state.page === id ? "active" : ""}" data-page="${id}"><span class="nav-icon">${icon}</span><span>${label}</span></button>`;
 }
@@ -138,7 +177,7 @@ function overlay() {
     <p>词舟把十词学习、间隔复习和 AI 口语练习连成一条路径。第一版不要求注册，三分钟就能完成第一次体验。</p>
     <div class="welcome-path"><span><b>01</b> 学一组词</span><i>→</i><span><b>02</b> 留下记忆</span><i>→</i><span><b>03</b> 开口表达</span></div>
     <div class="overlay-actions"><button class="btn primary" data-action="start-first-voyage">开始第一次学习</button><button class="btn outline" data-action="dismiss-welcome">先自己看看</button></div>
-    <small class="privacy-note">学习进度只保存在当前浏览器；内测期间仅记录匿名使用行为，用于改进产品。</small>
+    <small class="privacy-note">学习进度会先保存在当前浏览器；云端连接后自动同步。内测期间记录匿名使用行为，用于改进产品。</small>
   </section></div>`;
   if (state.overlay === "feedback") return `<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="feedback-title"><section class="overlay-card feedback-card">
     <button class="overlay-close" data-action="close-overlay" aria-label="关闭">×</button><small class="beta-label">HELP US STEER · 帮词舟校准方向</small><h2 id="feedback-title">这次体验，离“愿意继续用”还有多远？</h2>
@@ -148,9 +187,17 @@ function overlay() {
       <button class="btn primary feedback-submit" type="submit" ${state.feedbackSending ? "disabled" : ""}>${state.feedbackSending ? "正在送出…" : "提交反馈"}</button>
     </form><small class="privacy-note">联系方式仅用于本次产品回访，不公开展示；你也可以完全匿名提交。</small>
   </section></div>`;
+  if (state.overlay === "account") return `<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="account-title"><section class="overlay-card account-card">
+    <button class="overlay-close" data-action="close-overlay" aria-label="关闭">×</button><small class="beta-label">CLOUD VOYAGE · 云端学习档案</small><h2 id="account-title">${state.cloud.mode === "synced" ? "这台设备的进度已经存入云端。" : "先保存在本机，接通后自动驶向云端。"}</h2>
+    ${state.cloud.enabled
+      ? `<p>词舟已创建匿名云端身份，学习进度、反馈和匿名产品事件会自动同步。即使临时断网，也会先留在本机，恢复后补传。</p><div class="account-state"><span>当前状态</span><strong>${esc(cloudStatus())}</strong></div><p class="account-note">匿名身份能防止本机数据丢失；要在另一台电脑或未来的小程序继续同一份进度，还需要绑定邮箱、手机号或微信。绑定入口会在云环境联调后开启。</p>`
+      : `<p>云同步代码已经接入，但公开版本还缺一个 CloudBase 环境 ID，所以现在仍只保存在当前浏览器。创建环境后填入 ID，不需要把任何私钥放进网页。</p><div class="account-state"><span>当前状态</span><strong>等待云环境配置</strong></div><p class="account-note">连接完成后将同步：每个词的掌握度与复习日期、学习日期、当前章节、体验反馈及匿名运营事件。</p>`}
+    ${state.cloud.detail ? `<small class="privacy-note">最近一次连接信息：${esc(state.cloud.detail)}</small>` : ""}
+    <div class="overlay-actions"><button class="btn primary" data-action="close-overlay">我知道了</button><button class="btn outline" data-action="open-policy">查看隐私说明</button></div>
+  </section></div>`;
   return `<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="policy-title"><section class="overlay-card policy-card">
     <button class="overlay-close" data-action="close-overlay" aria-label="关闭">×</button><small class="beta-label">PUBLIC BETA · 公开内测说明</small><h2 id="policy-title">隐私、内容与版权</h2>
-    <h3>我们记录什么</h3><p>为了判断产品是否真正有用，词舟记录匿名页面访问、开始学习、口语体验和主动提交的评分。未登录状态下，学习进度保存在当前浏览器。</p>
+    <h3>我们记录什么</h3><p>为了安排复习和判断产品是否真正有用，词舟记录学习进度、匿名页面访问、开始学习、口语体验和主动提交的评分。云端未连接时，数据只保存在当前浏览器。</p>
     <h3>你主动填写的信息</h3><p>反馈和选填的联系方式只用于改进产品与体验回访，不用于出售或公开展示。</p>
     <h3>内容与商标说明</h3><p>公开版本只使用可发布的原创体验词条。学校名称和校训用于信息展示；词舟与 IELTS、Cambridge、British Council、IDP 及所展示院校不存在官方隶属或授权关系。</p>
     <div class="overlay-actions"><button class="btn primary" data-action="close-overlay">我知道了</button><button class="btn outline" data-action="open-feedback">提交建议</button></div>
@@ -174,7 +221,7 @@ function shell(pageHtml) {
       <div class="side-goal"><small>YOUR WORDSAIL JOURNEY</small><strong>${stats.average}% 掌握度</strong><p>以词为舟，去更远的世界。</p><div class="meter"><i style="width:${stats.average}%"></i></div></div>
     </aside>
     <div class="workspace">
-      <div class="topbar"><span>${todayLabel()}</span><div class="top-actions"><span class="source-pill ${sourceClass()}">${sourceLabel()}</span><span class="streak-pill">🔥 ${streak} 天学习记录</span></div></div>
+      <div class="topbar"><span>${todayLabel()}</span><div class="top-actions"><button class="cloud-pill ${esc(state.cloud.mode)}" data-action="open-account">${cloudStatus()}</button><span class="source-pill ${sourceClass()}">${sourceLabel()}</span><span class="streak-pill">🔥 ${streak} 天学习记录</span></div></div>
       <main>${pageHtml}</main>
       ${globalFooter()}
     </div>
@@ -701,6 +748,7 @@ document.addEventListener("click", event => {
   if (!actionButton) return;
   const action = actionButton.dataset.action;
   if (action === "open-feedback") { state.overlay = "feedback"; state.feedbackRating = 0; return render(); }
+  if (action === "open-account") { state.overlay = "account"; return render(); }
   if (action === "open-policy") { state.overlay = "policy"; return render(); }
   if (action === "close-overlay") { state.overlay = null; return render(); }
   if (action === "dismiss-welcome") {
@@ -761,18 +809,24 @@ document.addEventListener("submit", async event => {
   state.feedbackSending = true;
   render();
   try {
-    const response = await fetch(apiEndpoint("/api/feedback"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        rating: state.feedbackRating,
-        message: form.get("message"),
-        contact: form.get("contact"),
-        sessionId: sessionId(),
-        page: state.page
-      })
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = {
+      rating: state.feedbackRating,
+      message: form.get("message"),
+      contact: form.get("contact"),
+      sessionId: sessionId(),
+      page: state.page,
+      createdAt: new Date().toISOString()
+    };
+    if (cloudSync?.enabled) {
+      await cloudSync.recordFeedback(payload);
+    } else {
+      const response = await fetch(apiEndpoint("/api/feedback"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    }
     trackEvent("feedback_submitted", { rating: state.feedbackRating });
     state.feedbackSending = false;
     state.feedbackRating = 0;
@@ -809,6 +863,14 @@ window.addEventListener("popstate", () => { leaveSpeaking(false); state.page = l
 
 async function init() {
   loadLocalState();
+  cloudSync = createCloudSync(globalThis.WORDSAIL_CONFIG?.cloudBase, {
+    onStatus(cloudState) {
+      state.cloud = cloudState;
+      if (state.catalog) render();
+    },
+    onRemoteState: applyCloudSnapshot
+  });
+  cloudSync.init(learningSnapshot());
   try {
     let response;
     try { response = await fetch(apiEndpoint("/api/catalog?limit=500")); } catch { /* Static deployment fallback below. */ }

@@ -324,6 +324,10 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .product-footer button { border: 0; padding: 0; background: transparent; color: var(--forest-2); font-size: 9px; cursor: pointer; }
 .feedback-fab { position: fixed; z-index: 60; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 7px; padding: 10px 15px; border: 1px solid #f0c9ba; border-radius: 999px; background: #fffaf4; color: var(--forest); box-shadow: 0 10px 30px rgba(22,61,51,.13); font-size: 10px; font-weight: 800; cursor: pointer; }
 .feedback-fab span { color: var(--coral); font-size: 14px; }
+.cloud-pill { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; background: white; color: var(--ink-soft); font-size: 9px; font-weight: 800; cursor: pointer; }
+.cloud-pill.synced { border-color: #b7d8cb; background: #edf7f2; color: var(--forest-2); }
+.cloud-pill.connecting, .cloud-pill.queued { border-color: #ebd6ad; background: #fff8e9; color: #806126; }
+.cloud-pill.error { border-color: #efc7bc; background: #fff3ee; color: #9a4937; }
 
 .overlay { position: fixed; z-index: 120; inset: 0; display: grid; place-items: center; padding: 24px; overflow-y: auto; background: rgba(10,35,29,.58); backdrop-filter: blur(8px); }
 .overlay-card { position: relative; width: min(620px, 100%); padding: 38px; border: 1px solid rgba(255,255,255,.5); border-radius: 28px; background: #fffef9; box-shadow: 0 30px 90px rgba(5,31,24,.3); }
@@ -350,6 +354,11 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px s
 .policy-card h2 { margin-bottom: 24px; }
 .policy-card h3 { margin: 17px 0 5px; color: var(--forest); font-size: 12px; }
 .policy-card p { margin: 0; color: var(--ink-soft); font-size: 10px; line-height: 1.75; }
+.account-card p { color: var(--ink-soft); font-size: 11px; line-height: 1.75; }
+.account-state { margin: 22px 0 14px; padding: 17px 19px; border: 1px solid var(--line); border-radius: 16px; background: #f7f8f4; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.account-state span { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+.account-state strong { color: var(--forest); font-family: var(--serif); font-size: 17px; }
+.account-note { padding-left: 13px; border-left: 3px solid var(--coral); }
 
 @media (max-width: 1000px) {
   .shell { grid-template-columns: 76px minmax(0, 1fr); }
