@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lin-jingan.github.io/wordsail-public/sitemap.xml
