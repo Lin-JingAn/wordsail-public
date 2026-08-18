@@ -1,0 +1,765 @@
+{
+  "source": "original",
+  "publicationReady": true,
+  "totalWords": 30,
+  "chapters": [
+    {
+      "id": "starter",
+      "number": 1,
+      "title": "核心表达·思辨",
+      "description": "用于构建清晰论证和理解学术材料的十个原创核心词条。",
+      "words": [
+        {
+          "id": "starter-adapt",
+          "term": "adapt",
+          "phonetic": "/əˈdæpt/",
+          "meaning": "适应；调整，使适合",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "adapt to change",
+            "adapt a plan"
+          ],
+          "forms": [
+            "adaptable adj.",
+            "adaptation n."
+          ],
+          "example": "Students adapt faster when practice feels relevant to their goals.",
+          "exampleZh": "当练习与目标切实相关时，学生适应得更快。",
+          "topicTags": [
+            "education",
+            "change"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-coherent",
+          "term": "coherent",
+          "phonetic": "/kəʊˈhɪərənt/",
+          "meaning": "连贯的；条理清楚的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "a coherent argument",
+            "a coherent structure"
+          ],
+          "forms": [
+            "coherence n.",
+            "coherently adv."
+          ],
+          "example": "A coherent answer connects every example to one central claim.",
+          "exampleZh": "条理清楚的回答会把每个例子都连接到一个核心观点。",
+          "topicTags": [
+            "writing",
+            "argument"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-subtle",
+          "term": "subtle",
+          "phonetic": "/ˈsʌtəl/",
+          "meaning": "细微的；不易察觉的；巧妙的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "a subtle difference",
+            "a subtle shift"
+          ],
+          "forms": [
+            "subtlety n.",
+            "subtly adv."
+          ],
+          "example": "The chart reveals a subtle shift in how young adults travel.",
+          "exampleZh": "图表显示了年轻人出行方式的一处细微变化。",
+          "topicTags": [
+            "data",
+            "society"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-sustain",
+          "term": "sustain",
+          "phonetic": "/səˈsteɪn/",
+          "meaning": "维持；支撑；使持续",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "sustain growth",
+            "sustain attention"
+          ],
+          "forms": [
+            "sustainable adj.",
+            "sustainability n."
+          ],
+          "example": "Short daily sessions are easier to sustain than occasional long ones.",
+          "exampleZh": "相比偶尔一次的长时间学习，每天短时练习更容易坚持。",
+          "topicTags": [
+            "environment",
+            "learning"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-valid",
+          "term": "valid",
+          "phonetic": "/ˈvælɪd/",
+          "meaning": "有效的；合理的；有根据的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "a valid reason",
+            "valid evidence"
+          ],
+          "forms": [
+            "validity n.",
+            "validate v."
+          ],
+          "example": "A conclusion is only valid when the evidence supports it.",
+          "exampleZh": "只有证据能够支持结论时，这个结论才是成立的。",
+          "topicTags": [
+            "research",
+            "writing"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-assess",
+          "term": "assess",
+          "phonetic": "/əˈses/",
+          "meaning": "评估；评价",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "assess the impact",
+            "assess performance"
+          ],
+          "forms": [
+            "assessment n."
+          ],
+          "example": "Schools should assess progress through more than one type of task.",
+          "exampleZh": "学校应当通过不止一种任务来评估学习进展。",
+          "topicTags": [
+            "education",
+            "research"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-derive",
+          "term": "derive",
+          "phonetic": "/dɪˈraɪv/",
+          "meaning": "获得；源自",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "derive benefit from",
+            "be derived from"
+          ],
+          "forms": [
+            "derivation n."
+          ],
+          "example": "Many communities derive economic benefits from responsible tourism.",
+          "exampleZh": "许多社区从负责任的旅游业中获得经济收益。",
+          "topicTags": [
+            "economy",
+            "tourism"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-indicate",
+          "term": "indicate",
+          "phonetic": "/ˈɪndɪkeɪt/",
+          "meaning": "表明；指出",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "indicate a trend",
+            "clearly indicate"
+          ],
+          "forms": [
+            "indication n.",
+            "indicator n."
+          ],
+          "example": "The figures indicate a gradual change in commuting habits.",
+          "exampleZh": "这些数据表明通勤习惯正在逐渐改变。",
+          "topicTags": [
+            "data",
+            "transport"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-relevant",
+          "term": "relevant",
+          "phonetic": "/ˈreləvənt/",
+          "meaning": "相关的；切题的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "relevant evidence",
+            "be relevant to"
+          ],
+          "forms": [
+            "relevance n."
+          ],
+          "example": "Relevant examples make an argument easier to follow.",
+          "exampleZh": "切题的例子会让论证更容易理解。",
+          "topicTags": [
+            "writing",
+            "argument"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "starter-contrast",
+          "term": "contrast",
+          "phonetic": "/ˈkɒntrɑːst/",
+          "meaning": "差异；对比",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "in contrast to",
+            "a sharp contrast"
+          ],
+          "forms": [
+            "contrasting adj."
+          ],
+          "example": "In contrast to private cars, buses use road space more efficiently.",
+          "exampleZh": "与私家车相比，公交车能更高效地利用道路空间。",
+          "topicTags": [
+            "transport",
+            "comparison"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        }
+      ],
+      "totalWords": 10
+    },
+    {
+      "id": "society",
+      "number": 2,
+      "title": "社会与教育",
+      "description": "用于讨论机会、公共政策与社会变化的十个原创核心词条。",
+      "words": [
+        {
+          "id": "society-accessible",
+          "term": "accessible",
+          "phonetic": "/əkˈsesəbəl/",
+          "meaning": "可获得的；易使用的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "accessible education",
+            "be accessible to"
+          ],
+          "forms": [
+            "accessibility n."
+          ],
+          "example": "Online courses can make specialist knowledge accessible to more learners.",
+          "exampleZh": "在线课程能让更多学习者接触到专业知识。",
+          "topicTags": [
+            "education",
+            "technology"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-allocate",
+          "term": "allocate",
+          "phonetic": "/ˈæləkeɪt/",
+          "meaning": "分配；拨给",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "allocate resources",
+            "allocate funding"
+          ],
+          "forms": [
+            "allocation n."
+          ],
+          "example": "Local governments must allocate limited funding carefully.",
+          "exampleZh": "地方政府必须谨慎分配有限的资金。",
+          "topicTags": [
+            "government",
+            "finance"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-diverse",
+          "term": "diverse",
+          "phonetic": "/daɪˈvɜːs/",
+          "meaning": "多样的；不同的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "a diverse population",
+            "diverse needs"
+          ],
+          "forms": [
+            "diversity n."
+          ],
+          "example": "A diverse team can approach the same problem from several angles.",
+          "exampleZh": "多元化的团队能够从多个角度处理同一个问题。",
+          "topicTags": [
+            "work",
+            "society"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-inequality",
+          "term": "inequality",
+          "phonetic": "/ˌɪnɪˈkwɒləti/",
+          "meaning": "不平等；差距",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "income inequality",
+            "reduce inequality"
+          ],
+          "forms": [
+            "unequal adj."
+          ],
+          "example": "Unequal access to transport can deepen social inequality.",
+          "exampleZh": "交通资源获取不均可能加剧社会不平等。",
+          "topicTags": [
+            "society",
+            "transport"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-participate",
+          "term": "participate",
+          "phonetic": "/pɑːˈtɪsɪpeɪt/",
+          "meaning": "参与；参加",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "participate in",
+            "actively participate"
+          ],
+          "forms": [
+            "participation n.",
+            "participant n."
+          ],
+          "example": "Young residents are more likely to participate when meetings are held online.",
+          "exampleZh": "当会议在线举行时，年轻居民更有可能参与。",
+          "topicTags": [
+            "community",
+            "technology"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-perspective",
+          "term": "perspective",
+          "phonetic": "/pəˈspektɪv/",
+          "meaning": "观点；视角",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "from a wider perspective",
+            "a different perspective"
+          ],
+          "forms": [
+            "perspective-taking n."
+          ],
+          "example": "Travel can give students a different perspective on ordinary routines.",
+          "exampleZh": "旅行能让学生用不同视角看待日常生活。",
+          "topicTags": [
+            "education",
+            "culture"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-regulate",
+          "term": "regulate",
+          "phonetic": "/ˈreɡjəleɪt/",
+          "meaning": "管理；规范；调节",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "regulate an industry",
+            "strictly regulated"
+          ],
+          "forms": [
+            "regulation n.",
+            "regulator n."
+          ],
+          "example": "Clear rules are needed to regulate how companies use personal data.",
+          "exampleZh": "需要明确的规则来规范企业如何使用个人数据。",
+          "topicTags": [
+            "government",
+            "privacy"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-welfare",
+          "term": "welfare",
+          "phonetic": "/ˈwelfeə/",
+          "meaning": "福祉；福利",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "public welfare",
+            "animal welfare"
+          ],
+          "forms": [
+            "well-being n."
+          ],
+          "example": "Urban planning should consider public welfare as well as economic growth.",
+          "exampleZh": "城市规划既应考虑经济增长，也应考虑公共福祉。",
+          "topicTags": [
+            "cities",
+            "policy"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-urban",
+          "term": "urban",
+          "phonetic": "/ˈɜːbən/",
+          "meaning": "城市的；都市的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "urban areas",
+            "urban development"
+          ],
+          "forms": [
+            "urbanisation n."
+          ],
+          "example": "More trees can make dense urban areas cooler in summer.",
+          "exampleZh": "增加树木能够让人口密集的城区在夏季更加凉爽。",
+          "topicTags": [
+            "cities",
+            "environment"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "society-conventional",
+          "term": "conventional",
+          "phonetic": "/kənˈvenʃənəl/",
+          "meaning": "传统的；常规的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "conventional methods",
+            "conventional wisdom"
+          ],
+          "forms": [
+            "convention n.",
+            "conventionally adv."
+          ],
+          "example": "Flexible work challenges conventional ideas about the office.",
+          "exampleZh": "灵活办公挑战了人们对办公室的传统观念。",
+          "topicTags": [
+            "work",
+            "change"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        }
+      ],
+      "totalWords": 10
+    },
+    {
+      "id": "future",
+      "number": 3,
+      "title": "环境与科技",
+      "description": "用于讨论可持续发展、数字生活与未来城市的十个原创核心词条。",
+      "words": [
+        {
+          "id": "future-emission",
+          "term": "emission",
+          "phonetic": "/ɪˈmɪʃən/",
+          "meaning": "排放物；排放",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "carbon emissions",
+            "reduce emissions"
+          ],
+          "forms": [
+            "emit v."
+          ],
+          "example": "Better public transport can reduce emissions from daily travel.",
+          "exampleZh": "更完善的公共交通能够减少日常出行产生的排放。",
+          "topicTags": [
+            "environment",
+            "transport"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-conserve",
+          "term": "conserve",
+          "phonetic": "/kənˈsɜːv/",
+          "meaning": "节约；保护",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "conserve water",
+            "conserve wildlife"
+          ],
+          "forms": [
+            "conservation n."
+          ],
+          "example": "Simple design changes can help households conserve water.",
+          "exampleZh": "简单的设计调整可以帮助家庭节约用水。",
+          "topicTags": [
+            "environment",
+            "home"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-renewable",
+          "term": "renewable",
+          "phonetic": "/rɪˈnjuːəbəl/",
+          "meaning": "可再生的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "renewable energy",
+            "renewable resources"
+          ],
+          "forms": [
+            "renew v."
+          ],
+          "example": "Renewable energy can improve energy security over time.",
+          "exampleZh": "从长期来看，可再生能源能够提升能源安全。",
+          "topicTags": [
+            "energy",
+            "environment"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-resilient",
+          "term": "resilient",
+          "phonetic": "/rɪˈzɪliənt/",
+          "meaning": "有韧性的；恢复力强的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "a resilient community",
+            "resilient systems"
+          ],
+          "forms": [
+            "resilience n."
+          ],
+          "example": "Cities need resilient transport systems during extreme weather.",
+          "exampleZh": "城市需要能够应对极端天气的韧性交通系统。",
+          "topicTags": [
+            "cities",
+            "climate"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-innovation",
+          "term": "innovation",
+          "phonetic": "/ˌɪnəˈveɪʃən/",
+          "meaning": "创新；新方法",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "technological innovation",
+            "encourage innovation"
+          ],
+          "forms": [
+            "innovate v.",
+            "innovative adj."
+          ],
+          "example": "Innovation matters most when it solves a real human problem.",
+          "exampleZh": "当创新解决真实的人类问题时，它才最有价值。",
+          "topicTags": [
+            "technology",
+            "society"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-automate",
+          "term": "automate",
+          "phonetic": "/ˈɔːtəmeɪt/",
+          "meaning": "使自动化",
+          "partsOfSpeech": [
+            "v."
+          ],
+          "collocations": [
+            "automate a process",
+            "highly automated"
+          ],
+          "forms": [
+            "automation n."
+          ],
+          "example": "Small businesses can automate routine tasks without replacing every role.",
+          "exampleZh": "小企业可以把日常任务自动化，而不必取代所有岗位。",
+          "topicTags": [
+            "technology",
+            "work"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-privacy",
+          "term": "privacy",
+          "phonetic": "/ˈprɪvəsi/",
+          "meaning": "隐私；私人空间",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "protect privacy",
+            "privacy concerns"
+          ],
+          "forms": [
+            "private adj."
+          ],
+          "example": "Convenient services should not require users to surrender their privacy.",
+          "exampleZh": "便利的服务不应要求用户放弃隐私。",
+          "topicTags": [
+            "technology",
+            "rights"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-efficient",
+          "term": "efficient",
+          "phonetic": "/ɪˈfɪʃənt/",
+          "meaning": "高效的；节能的",
+          "partsOfSpeech": [
+            "adj."
+          ],
+          "collocations": [
+            "energy-efficient",
+            "an efficient system"
+          ],
+          "forms": [
+            "efficiency n.",
+            "efficiently adv."
+          ],
+          "example": "An efficient bus network saves both time and road space.",
+          "exampleZh": "高效的公交网络既节省时间，也节省道路空间。",
+          "topicTags": [
+            "transport",
+            "cities"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-infrastructure",
+          "term": "infrastructure",
+          "phonetic": "/ˈɪnfrəstrʌktʃə/",
+          "meaning": "基础设施",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "public infrastructure",
+            "digital infrastructure"
+          ],
+          "forms": [
+            "infrastructural adj."
+          ],
+          "example": "Reliable digital infrastructure is essential for remote education.",
+          "exampleZh": "可靠的数字基础设施对远程教育至关重要。",
+          "topicTags": [
+            "technology",
+            "education"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "id": "future-consequence",
+          "term": "consequence",
+          "phonetic": "/ˈkɒnsɪkwəns/",
+          "meaning": "结果；后果",
+          "partsOfSpeech": [
+            "n."
+          ],
+          "collocations": [
+            "a serious consequence",
+            "as a consequence"
+          ],
+          "forms": [
+            "consequently adv."
+          ],
+          "example": "A policy can have unintended consequences for low-income families.",
+          "exampleZh": "一项政策可能会给低收入家庭带来意料之外的后果。",
+          "topicTags": [
+            "policy",
+            "society"
+          ],
+          "sourceType": "original",
+          "reviewStatus": "reviewed"
+        }
+      ],
+      "totalWords": 10
+    }
+  ]
+}
